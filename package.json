@@ -1,0 +1,21 @@
+{
+  "name": "trilha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "trilha.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonysantosoliva/trilhaTypescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/tonysantosoliva/trilhaTypescript/issues"
+  },
+  "homepage": "https://github.com/tonysantosoliva/trilhaTypescript#readme"
+}
