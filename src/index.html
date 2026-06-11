@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang = "pt-BR">
+    <head> 
+        <title> Registro de Transações </title>
+        <meta charset = "UTF-8">
+    </head>
+    
+    <body>
+    <h1> Estatísticas </h1>
+    <p> 
+        Total de Transações Feitas:<span id = "transacoes"> carregando...</span>
+        <br>
+        Transações no Cartão de crédito:<span id = "cartao"> carregando...</span>
+        <br>    
+        Transações no Boleto: <span id = "boleto"> carregando... </span>
+        <script src= "main.ts" defer> </script>
+    </p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th> <strong> Nome </strong></th>
+                    <th> <strong> Email </strong></th>
+                    <th> <strong> Compra </strong></th>
+                    <th> <strong> Pagamento </strong></th>
+                    <th> <strong> Status </strong></th>
+                </tr>
+            </thead>
+            <tbody id ="datatable">
+            </tbody>
+        </table>
+    </body>
+
+
+</html>
