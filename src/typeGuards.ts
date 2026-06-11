@@ -31,7 +31,7 @@ function isArrayobj(valor: unknown): valor is Record<string, unknown>[] {
   else return false
 }
 
-  export function isApi(body: unknown): body is ApiInterface[] {
+export function isApi(body: unknown): body is ApiInterface[] {
     const corpo = body as Record<string, unknown>[]
     if( isArrayobj(corpo)){
         if(corpo.every(y => 
