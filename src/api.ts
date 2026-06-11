@@ -14,20 +14,14 @@ import type { ApiInterface } from "./interfaces"
 import { isApi } from "./typeGuards"
 const API_URL: string = "https://api.origamid.dev/json/transacoes.json"
 
-async function pegaDadosApi(API_URL:string):Promise< ApiInterface | void >{
+async function pegaDadosApi(API_URL:string):Promise< ApiInterface []| void >{
     const header = await fetch(API_URL)
     if(header.ok){
-        const body: unknown = await header.json() // problema é que json retorna tipo any, força com unknown
-        if (isApi(body))
-        console.log(`${body}`)
-
+        const body: unknown = await header.json()
+        if (isApi(body)){
+        return body
+        }
     }
-
-
-
-    
-    
-
-
-
 }
+
+
