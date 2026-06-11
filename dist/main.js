@@ -1,8 +1,7 @@
 /*Não preciso me preocupar de usar métodos com o html, já que o DOM é baixado e colocado no escopo global dos arquivos
 documento é o objeto raiz da árvore */
 import { pegaDadosApi } from "./api";
-async function insertTable() {
-    const corpo = await pegaDadosApi();
+function insertTable(corpo) {
     const tbody = document.getElementById("data_table");
     if (!(tbody === null)) {
         for (const transacao of corpo) {
@@ -18,37 +17,40 @@ async function insertTable() {
         }
     }
 }
-async function insertStats() {
-    const dados = await pegaDadosApi();
+function insertStats(dados, ncorretos) {
     const totais = document.getElementById("transacoes");
     if (totais !== null) {
-        totais.textContent = dados.toLocaleString("pt-Br", {
+        const total = ncorretos.reduce((acc, n) => acc + n);
+        totais.textContent = total.toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL"
         });
     }
     const acc = dados.reduce((acc, transacao) => {
-        (acc[transacao.tipo_pgt] = (acc[transacao.tipo_pgt] ?? 0) + 1);
+        acc[transacao.tipo_pgt] = (acc[transacao.tipo_pgt] ?? 0) + 1;
+        acc[transacao.status] = (acc[transacao.status] ?? 0) + 1;
         return acc;
     }, {});
     const cartao = document.getElementById("cartao");
     const boleto = document.getElementById("boleto");
-    if (cartao !== null && boleto !== null && typeof acc === "number") {
-        [cartao.textContent, boleto.textContent] = [acc["Cartão de Crédito"], acc["Boleto"]];
+    if (cartao !== null && boleto !== null && typeof acc === "object" && acc !== null) {
+        [cartao.textContent, boleto.textContent] = [String(acc["Cartão de Crédito"]), String(acc["Boleto"])];
     }
+    const [pagas, recusadas, aguardando, estornadas] = [document.getElementById("pagas"),
+        document.getElementById("recusadas"), document.getElementById("aguardando"), document.getElementById("estornadas")
+    ][pagas.textContent, recusadas.textContent, aguardando.textContent, estornadas.textContent] = [
+        String(acc["Paga"]), String(acc["Aguardando pagamento"]), String(acc["Estornada"]), String(acc["Recusada"])
+    ];
 }
-async function insertTotalCalculus() {
-    const ncorretos = await correctForm();
+function insertTotalCalculus(ncorretos) {
     const total = ncorretos.reduce((acc, x) => acc + x);
     const span = document.getElementById("transacoes");
     if (span !== null) {
         span.textContent = String(total);
     }
 }
-async function insertStatusCalculus() { }
 async function insertMelhorDia() { }
-async function correctForm() {
-    const data = await pegaDadosApi();
+function correctForm(data) {
     const arraynumeros = data.map(x => Number((x.valor).replace(/\./, "").replace(",", "."))); // Só para lembrar que o número precisa estar como 1200.2
     const ncorretos = arraynumeros.map(y => {
         if (!(typeof y === "number")) {
@@ -57,4 +59,7 @@ async function correctForm() {
         return y;
     });
     return ncorretos;
+}
+async function main() {
+    const dados = await pegaDadosApi();
 }
