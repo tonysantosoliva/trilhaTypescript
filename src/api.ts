@@ -12,16 +12,15 @@
 RETORNA ARRAY DE OBJETOS */
 import type { ApiInterface } from "./interfaces"
 import { isApi } from "./typeGuards"
-const API_URL: string = "https://api.origamid.dev/json/transacoes.json"
+export const API_URL: string = "https://api.origamid.dev/json/transacoes.json"
 
-async function pegaDadosApi(API_URL:string):Promise< ApiInterface []| void >{
+export async function pegaDadosApi():Promise< ApiInterface []| void >{
     const header = await fetch(API_URL)
     if(header.ok){
         const body: unknown = await header.json()
         if (isApi(body)){
-        return body
-        }
-    }
+        return body 
+      }
+        else new Error ("Formato de recebimento dos dados inválido") }
+    else throw new Error(`Erro no recebimento dos dados ${header.status}`)
 }
-
-
