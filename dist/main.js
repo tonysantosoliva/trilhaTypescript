@@ -38,9 +38,11 @@ function insertStats(dados, ncorretos) {
     }
     const [pagas, recusadas, aguardando, estornadas] = [document.getElementById("pagas"),
         document.getElementById("recusadas"), document.getElementById("aguardando"), document.getElementById("estornadas")
-    ][pagas.textContent, recusadas.textContent, aguardando.textContent, estornadas.textContent] = [
-        String(acc["Paga"]), String(acc["Aguardando pagamento"]), String(acc["Estornada"]), String(acc["Recusada"])
     ];
+    if (pagas !== null && recusadas !== null && aguardando !== null && estornadas !== null)
+        [pagas.textContent, recusadas.textContent, aguardando.textContent, estornadas.textContent] = [
+            String(acc["Paga"]), String(acc["Aguardando pagamento"]), String(acc["Estornada"]), String(acc["Recusada"])
+        ];
 }
 function insertTotalCalculus(ncorretos) {
     const total = ncorretos.reduce((acc, x) => acc + x);

@@ -43,7 +43,7 @@ function insertStats(dados: ApiInterface[], ncorretos: number[]):void{
         const [pagas, recusadas, aguardando, estornadas] = [document.getElementById("pagas"),
             document.getElementById("recusadas"), document.getElementById("aguardando"), document.getElementById("estornadas")
         ]
-        
+        if( pagas !== null && recusadas !== null && aguardando !==null && estornadas !== null)
         [pagas.textContent, recusadas.textContent, aguardando.textContent, estornadas.textContent] = [
             String(acc["Paga"]), String(acc["Aguardando pagamento"]), String(acc["Estornada"]), String(acc["Recusada"])
     ]
