@@ -3,31 +3,33 @@
 <html lang = "pt-BR">
     <head> 
         <title> Registro de Transações </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
         <meta charset = "UTF-8">
+        <script src= "dist/main.js" type = "module" defer> </script>
     </head>
     
     <body>
+    <main class="container"></main>
+    <div style="margin-left: 1rem;">
     <h1> Estatísticas </h1>
     <p> 
-        Total de Transações Feitas:<span id = "transacoes"> carregando...</span>
+        Valor Total em Transações: <span id = "transacoes">carregando...</span>
         <br>
-        Transações no Cartão de crédito:<span id = "cartao"> carregando...</span>
+        Transações no Cartão de crédito: <span id = "cartao"> carregando...</span>
         <br>    
         Transações no Boleto: <span id = "boleto"> carregando... </span>
         <br>
-        Pagas:<span id = "pagas"> carregando...</span>
+        Pagas: <span id = "pagas"> carregando...</span>
         <br>
-        Recusadas:<span id = "recusadas"> carregando...</span>
+        Recusadas: <span id = "recusadas"> carregando...</span>
         <br>    
         Aguardando pagamento: <span id = "aguardando"> carregando... </span>
         <br>
         Estornadas: <span id = "estornadas"> carregando...</span>
         <br>
         Data com mais vendas: <span id ="dia"> carregando... </span>
-        <script src= "dist/main.js" type = "module" defer> </script>
-
     </p>
-        
+    </div>    
         <table>
             <thead>
                 <tr>

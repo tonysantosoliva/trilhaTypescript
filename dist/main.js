@@ -11,9 +11,14 @@ function insertTable(corpo) {
                 transacao["Forma de Pagamento"], transacao["Status"]];
             for (const data of row) {
                 const td = document.createElement("td");
-                td.textContent = String(data);
+                if (data === transacao["Valor (R$)"] && !(Number.isNaN)) {
+                    const previoustext = data.replace(/\./g, "").replace(",", ".");
+                    td.textContent = Number(previoustext).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+                }
+                else
+                    td.textContent = data;
                 tr.appendChild(td);
-            } //Lembrar que não está mostrando os valores em real
+            }
         }
     }
 }
