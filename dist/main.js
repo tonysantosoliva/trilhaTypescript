@@ -31,6 +31,10 @@ function insertStats(dados, ncorretos) {
             currency: "BRL"
         });
     }
+    const ttransacao = document.getElementById("total");
+    if (ttransacao !== null) {
+        ttransacao.textContent = String(dados.length);
+    }
     const acc = dados.reduce((acc, transacao) => {
         acc[transacao["Forma de Pagamento"]] = (acc[transacao["Forma de Pagamento"]] ?? 0) + 1;
         acc[transacao["Status"]] = (acc[transacao["Status"]] ?? 0) + 1;
