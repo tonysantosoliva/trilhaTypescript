@@ -20,6 +20,9 @@ function isInterface(value) {
     return false;
 }
 function isArrayobj(valor) {
+    if (!(Array.isArray(valor))) {
+        return false;
+    }
     const value = valor;
     if (value.every((x) => isInterface(x))) {
         return true;
@@ -30,14 +33,14 @@ function isArrayobj(valor) {
 export function isApi(body) {
     const corpo = body;
     if (isArrayobj(corpo)) {
-        if (corpo.every(y => typeof y.status === "string" &&
-            typeof y.id === "number" &&
-            typeof y.data === "string" &&
-            typeof y.nome === "string" &&
-            typeof y.tipo_pgt === "string" &&
-            typeof y.emmail === "string" &&
-            typeof y.valor === "string" &&
-            typeof y.novo === "number")) {
+        if (corpo.every(y => typeof y.Status === "string" &&
+            typeof y.ID === "number" &&
+            typeof y.Data === "string" &&
+            typeof y.Nome === "string" &&
+            typeof y["Forma de pagamento"] === "string" &&
+            typeof y.Email === "string" &&
+            typeof y["Valor (R$)"] === "string" &&
+            typeof y["Cliente novo"] === "number")) {
             return true;
         }
         else

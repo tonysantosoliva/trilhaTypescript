@@ -19,14 +19,14 @@ Estornada: 2
 Dia com mais vendas: Terça*/
 
 interface ApiInterface {
-    status: string
-    id: number
-    data: string
-    nome: string
-    tipo_pgt: string
-    email: string
-    valor: string
-    novo: number
+      Status: "string" 
+      ID: "number" 
+      Data: "string" 
+      Nome:"string" 
+      "Forma de pagamento": "string" 
+      Email: "string" 
+      "Valor (R$)": "string" 
+      "Cliente novo": "number"
 }
 interface Stats {
     total: string

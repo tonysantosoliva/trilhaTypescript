@@ -1,8 +1,8 @@
 /*Não preciso me preocupar de usar métodos com o html, já que o DOM é baixado e colocado no escopo global dos arquivos
 documento é o objeto raiz da árvore */
 
-import {pegaDadosApi} from "./api"
-import type {ApiInterface, Stats} from "./interfaces"
+import {pegaDadosApi} from "./api.js"
+import type {ApiInterface} from "./interfaces"
 
 function insertTable(corpo: ApiInterface[]):void{
     const tbody = document.getElementById("data_table")
@@ -69,13 +69,27 @@ function insertMelhorData(dado: ApiInterface[]):void{
 }}
 
 function correctForm(data: ApiInterface[]): number[]{
-    const arraynumeros = data.map(x => Number((x.valor).replace(/\./, "").replace(",","."))) // Só para lembrar que o número precisa estar como 1200.2
+    const arraynumeros = data.map(x => Number((x.valor).replace(/\./g, "").replace(",","."))) // Só para lembrar que o número precisa estar como 1200.2
     const ncorretos = arraynumeros.map(y => Number.isNaN(y) ? 0 : y )
     return ncorretos
 }
 async function main():Promise<void>{
+  try {
     const dados = await pegaDadosApi()
+    const ncorretos = correctForm(dados)
 
-
-
+    insertTable(dados)
+    insertStats(dados, ncorretos)
+    insertMelhorData(dados)
+  } catch (erro) {
+    if (erro instanceof Error) {
+      console.error("Erro ao carregar dados:", erro.message)
+    }
+  }
 }
+
+main()
+
+
+
+

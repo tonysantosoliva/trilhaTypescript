@@ -11,7 +11,7 @@
   },
 RETORNA ARRAY DE OBJETOS */
 import type { ApiInterface } from "./interfaces"
-import { isApi } from "./typeGuards"
+import { isApi } from "./typeGuards.js"
 const API_URL: string = "https://api.origamid.dev/json/transacoes.json"
 
 export async function pegaDadosApi():Promise< ApiInterface []>{

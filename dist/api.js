@@ -1,4 +1,4 @@
-import { isApi } from "./typeGuards";
+import { isApi } from "./typeGuards.js";
 const API_URL = "https://api.origamid.dev/json/transacoes.json";
 export async function pegaDadosApi() {
     const header = await fetch(API_URL);
