@@ -41,10 +41,10 @@ export function isApi(body: unknown): body is ApiInterface[] {
           typeof  y.ID === "number" &&
           typeof  y.Data === "string" &&
           typeof  y.Nome === "string" &&
-          typeof  y["Forma de pagamento"] === "string" &&
+          typeof  y["Forma de Pagamento"] === "string" &&
           typeof  y.Email === "string" &&
           typeof  y["Valor (R$)"] === "string" &&
-          typeof  y["Cliente novo"] === "number")
+          typeof  y["Cliente Novo"] === "number")
         ){
         return true
         }

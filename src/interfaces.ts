@@ -23,10 +23,10 @@ interface ApiInterface {
       ID: "number" 
       Data: "string" 
       Nome:"string" 
-      "Forma de pagamento": "string" 
+      "Forma de Pagamento": "string" 
       Email: "string" 
       "Valor (R$)": "string" 
-      "Cliente novo": "number"
+      "Cliente Novo": "number"
 }
 interface Stats {
     total: string
