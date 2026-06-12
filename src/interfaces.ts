@@ -39,7 +39,7 @@ interface Stats {
     melhor_dia: string
 }
 
-export type { Stats, ApiInterface }
+export type { Stats, ApiInterface}
 
 
 

@@ -13,14 +13,14 @@ function insertTable(corpo) {
                 const td = document.createElement("td");
                 td.textContent = String(data);
                 tr.appendChild(td);
-            }
+            } //Lembrar que não está mostrando os valores em real
         }
     }
 }
 function insertStats(dados, ncorretos) {
     const totais = document.getElementById("transacoes");
     if (totais !== null) {
-        const total = ncorretos.reduce((acc, n) => acc + n);
+        const total = ncorretos.reduce((acc, n) => acc + n, 0);
         totais.textContent = total.toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL"
@@ -33,7 +33,7 @@ function insertStats(dados, ncorretos) {
     }, {});
     const cartao = document.getElementById("cartao");
     const boleto = document.getElementById("boleto");
-    if (cartao !== null && boleto !== null && typeof acc === "object" && acc !== null) {
+    if (cartao !== null && boleto !== null) {
         [cartao.textContent, boleto.textContent] = [String(acc["Cartão de Crédito"]), String(acc["Boleto"])];
     }
     const [pagas, recusadas, aguardando, estornadas] = [document.getElementById("pagas"),
@@ -44,22 +44,27 @@ function insertStats(dados, ncorretos) {
             String(acc["Paga"]), String(acc["Aguardando pagamento"]), String(acc["Estornada"]), String(acc["Recusada"])
         ];
 }
-function insertTotalCalculus(ncorretos) {
-    const total = ncorretos.reduce((acc, x) => acc + x);
-    const span = document.getElementById("transacoes");
-    if (span !== null) {
-        span.textContent = String(total);
+function insertMelhorData(dado) {
+    const datas = dado.map(x => x.data.slice(0, 10));
+    const acc = datas.reduce((acc, data) => {
+        acc[data] = (acc[data] ?? 0) + 1;
+        return acc;
+    }, {});
+    let maximo = 0;
+    for (const [dia, vezes] of Object.entries(acc)) {
+        if (vezes >= maximo) {
+            maximo = vezes;
+        }
+    }
+    const diaArray = Object.entries(acc).filter((x) => x[1] === maximo);
+    const htmldia = document.getElementById("dia");
+    if (htmldia !== null && diaArray[0] !== undefined && diaArray[0][0] !== undefined) {
+        htmldia.textContent = diaArray[0][0];
     }
 }
-async function insertMelhorDia() { }
 function correctForm(data) {
     const arraynumeros = data.map(x => Number((x.valor).replace(/\./, "").replace(",", "."))); // Só para lembrar que o número precisa estar como 1200.2
-    const ncorretos = arraynumeros.map(y => {
-        if (!(typeof y === "number")) {
-            return 0;
-        }
-        return y;
-    });
+    const ncorretos = arraynumeros.map(y => Number.isNaN(y) ? 0 : y);
     return ncorretos;
 }
 async function main() {
