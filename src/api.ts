@@ -9,7 +9,7 @@
     "Valor (R$)": "452,00",
     "Cliente Novo": 1
   },
-RETORNA ARRAY DE OBJETOS */
+Lembra que retorna array de objetos e não objetos puro */
 import type { ApiInterface } from "./interfaces"
 import { isApi } from "./typeGuards.js"
 const API_URL: string = "https://api.origamid.dev/json/transacoes.json"

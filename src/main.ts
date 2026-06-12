@@ -14,7 +14,7 @@ function insertTable(corpo: ApiInterface[]):void{
                 transacao["Forma de Pagamento"], transacao["Status"]]
                 for(const data of row){
                    const td = document.createElement("td")
-                if (data === transacao["Valor (R$)"] && !(Number.isNaN)){
+                if (data === transacao["Valor (R$)"] && !(Number.isNaN(parseFloat(data)))){
                 const previoustext = data.replace(/\./g, "").replace(",",".")
                 td.textContent  =  Number(previoustext).toLocaleString("pt-BR",{style: "currency",currency: "BRL" })
                 } 
